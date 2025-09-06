@@ -13,17 +13,22 @@ namespace CapaPresentacion.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult MiProgreso()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult MisRutas()
         {
-            ViewBag.Message = "Your contact page.";
+            return View();
+        }
+        public ActionResult Certificados()
+        {
+            return View();
+        }
 
+        public ActionResult ChatEduIa()
+        {
             return View();
         }
     }

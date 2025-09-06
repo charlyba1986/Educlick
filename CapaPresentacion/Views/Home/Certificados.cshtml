@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Certificados";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>Certificados</h2>*@
+
+<section class="row justify-content-center">
+    <div class="col-12">
+
+        <div class="surface-wrapper gradient rounded-4 shadow-sm p-4 p-md-5">
+            <header class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="h4 mb-0">Dashboard Alumno</h1>
+               
+            </header>
+
+
+            <h2 class="h5 text-center mb-3">Certificados obtenidos</h2>
+            <hr class="opacity-50" />
+
+
+            <div class="d-grid gap-3 col-12 col-md-10 col-lg-8 mx-auto mt-4">
+                <button class="btn btn-lg btn-outline-dark rounded-4 py-3 text-start">
+                    Certificado de finanzas 1
+                </button>
+                <button class="btn btn-lg btn-outline-dark rounded-4 py-3 text-start">
+                    Certificado en planificación
+                </button>
+                <button class="btn btn-lg btn-outline-dark rounded-4 py-3 text-start">
+                    Certificado en marketing 2
+                </button>
+                <button class="btn btn-lg btn-outline-dark rounded-4 py-3 text-start">
+                    Certificado de finanzas 2
+                </button>
+            </div>
+
+
+         
+        </div>
+    </div>
+
+
+    <style>
+        :root {
+            --ec-surface: #B9FF66; /* color de la imagen */
+            --ec-surface-end: #dcdcdc; /* gris claro para degradado */
+        }
+
+
+        .surface-wrapper {
+            min-height: 70vh;
+            background: var(--ec-surface);
+            color: #0b2210; /* contraste sobre verde claro */
+        }
+
+
+            /* Degradado similar a la captura: de lime a gris claro hacia abajo */
+            .surface-wrapper.gradient {
+                background: linear-gradient(180deg, var(--ec-surface) 0%, var(--ec-surface) 35%, var(--ec-surface-end) 100%);
+            }
+
+
+        /* Botones y bordes redondeados para coincidir con el estilo de los "chips" */
+        .btn {
+            border-width: 2px;
+        }
+
+        .btn-outline-dark:hover {
+            background: rgba(0,0,0,.05);
+        }
+    </style>
