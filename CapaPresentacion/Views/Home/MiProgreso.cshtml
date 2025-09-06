@@ -4,32 +4,169 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Mi progreso</h2>
+@*<h2>Mi progreso</h2>*@
 
 <!-- Vista: Mi Progreso y Mis Rutas - Educlick -->
-<div class="container mt-5">
-    <!-- Mi Progreso -->
-    <div class="card shadow mb-5">
-        <div class="card-header bg-success text-white">
-            <h5 class="mb-0"><i class="fas fa-chart-line me-2"></i>Mi Progreso</h5>
+<!--<div class="container mt-5">-->
+<!-- Mi Progreso -->
+<!--<div class="card shadow mb-5">
+    <div class="card-header bg-success text-white">
+        <h5 class="mb-0"><i class="fas fa-chart-line me-2"></i>Mi Progreso</h5>
+    </div>
+    <div class="card-body">
+        <div class="row text-center">
+            <div class="col-md-4">
+                <h6>Tiempo dedicado</h6>
+                <p class="fs-4">29 hs</p>
+            </div>
+            <div class="col-md-4">
+                <h6>Planes completados</h6>
+                <p class="fs-4">5</p>
+            </div>
+            <div class="col-md-4">
+                <h6>Progreso general</h6>
+                <p class="fs-4 text-success">84%</p>
+            </div>
         </div>
-        <div class="card-body">
-            <div class="row text-center">
-                <div class="col-md-4">
-                    <h6>Tiempo dedicado</h6>
-                    <p class="fs-4">29 hs</p>
-                </div>
-                <div class="col-md-4">
-                    <h6>Planes completados</h6>
-                    <p class="fs-4">5</p>
-                </div>
-                <div class="col-md-4">
-                    <h6>Progreso general</h6>
-                    <p class="fs-4 text-success">84%</p>
+        <hr>
+        <h6 class="text-muted">Progreso por ruta</h6>
+        <canvas id="chartProgreso"></canvas>
+    </div>
+</div>-->
+
+@{
+    ViewData["Title"] = "Mi progreso — Educlick";
+}
+
+<section class="w-100">
+    <div class="surface-wrapper gradient shadow-sm p-4 p-md-5">
+
+        <h1 class="h3 fw-bold text-center mb-4">Mi progreso</h1>
+        <hr class="opacity-50 mb-4" />
+
+        <!-- KPIs -->
+        <div class="row g-4 mb-5 text-center">
+            <div class="col-12 col-md-4">
+                <div class="card shadow-sm rounded-4 p-4 h-100">
+                    <h2 class="h6 fw-semibold mb-2">Tiempo dedicado</h2>
+                    <p class="display-6 fw-bold mb-0">29 <small class="fs-5">h</small></p>
                 </div>
             </div>
-            <hr>
-            <h6 class="text-muted">Progreso por ruta</h6>
-            <canvas id="chartProgreso"></canvas>
+            <div class="col-12 col-md-4">
+                <div class="card shadow-sm rounded-4 p-4 h-100">
+                    <h2 class="h6 fw-semibold mb-2">Planes completados</h2>
+                    <p class="display-6 fw-bold mb-0">5</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="card shadow-sm rounded-4 p-4 h-100 d-flex flex-column align-items-center justify-content-center">
+                    <h2 class="h6 fw-semibold mb-3">Progreso general</h2>
+                    <canvas id="gaugeChart" width="120" height="120" aria-label="Progreso general"></canvas>
+                    <p class="fw-semibold mt-2 mb-0">84% <small class="text-muted">All goals</small></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gráficos de planes -->
+        <div class="row g-4">
+            <div class="col-12 col-md-6">
+                <div class="card shadow-sm rounded-4 p-3">
+                    <h3 class="h6 fw-semibold">Plan A</h3>
+                    <canvas id="chartPlanA" height="120"></canvas>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="card shadow-sm rounded-4 p-3">
+                    <h3 class="h6 fw-semibold">Plan B</h3>
+                    <canvas id="chartPlanB" height="120"></canvas>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="card shadow-sm rounded-4 p-3">
+                    <h3 class="h6 fw-semibold">Plan C</h3>
+                    <canvas id="chartPlanC" height="120"></canvas>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="card shadow-sm rounded-4 p-3">
+                    <h3 class="h6 fw-semibold">Plan D</h3>
+                    <canvas id="chartPlanD" height="120"></canvas>
+                </div>
+            </div>
         </div>
     </div>
+</section>
+
+<style>
+    :root {
+        --ec-surface: #B9FF66;
+        --ec-surface-end: #dcdcdc;
+    }
+
+    .surface-wrapper {
+        min-height: 100vh;
+        background: var(--ec-surface);
+        color: #0b2210;
+        width: 100%;
+        border-radius: 0;
+    }
+
+        .surface-wrapper.gradient {
+            background: linear-gradient(180deg, var(--ec-surface) 0%, var(--ec-surface) 35%, var(--ec-surface-end) 100%);
+        }
+</style>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+    // Gauge chart para Progreso general
+    const ctxGauge = document.getElementById('gaugeChart').getContext('2d');
+    new Chart(ctxGauge, {
+        type: 'doughnut',
+        data: {
+            datasets: [{
+                data: [84, 16],
+                backgroundColor: ['#000', '#e0e0e0'],
+                borderWidth: 0,
+                circumference: 270,
+                rotation: 225,
+                cutout: '75%'
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { display: false }, tooltip: { enabled: false } }
+        }
+    });
+
+    // Función para generar gráficos lineales de Planes
+    function createLineChart(canvasId) {
+        const ctx = document.getElementById(canvasId).getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023'],
+                datasets: [{
+                    label: 'Progreso',
+                    data: [10,20,50,30,60,40,70,90],
+                    borderColor: '#000',
+                    backgroundColor: 'rgba(0,0,0,0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+    }
+
+    // Crear los gráficos de Planes
+    createLineChart('chartPlanA');
+    createLineChart('chartPlanB');
+    createLineChart('chartPlanC');
+    createLineChart('chartPlanD');
+</script>
+

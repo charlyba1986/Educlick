@@ -32,5 +32,15 @@ namespace CapaPresentacion.Controllers
             return View();
         }
 
+        public ActionResult VerPerfil()
+        {
+            return View();
+        }
+
+        public ActionResult NuevoCurso()
+        {
+            return View();
+        }
+
     }
 }

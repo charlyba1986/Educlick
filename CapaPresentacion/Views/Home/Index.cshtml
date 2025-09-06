@@ -3,31 +3,140 @@
 }
 
 <main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
+    @*<section class="row" aria-labelledby="aspnetTitle">
+            <h1 id="title">ASP.NET</h1>
+            <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+            <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
+        </section>
+
+        <div class="row">
+            <section class="col-md-4" aria-labelledby="gettingStartedTitle">
+                <h2 id="gettingStartedTitle">Getting started</h2>
+                <p>
+                    ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                    enables a clean separation of concerns and gives you full control over markup
+                    for enjoyable, agile development.
+                </p>
+                <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+            </section>
+            <section class="col-md-4" aria-labelledby="librariesTitle">
+                <h2 id="librariesTitle">Get more libraries</h2>
+                <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+                <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+            </section>
+            <section class="col-md-4" aria-labelledby="hostingTitle">
+                <h2 id="hostingTitle">Web Hosting</h2>
+                <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+                <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+            </section>
+        </div>*@
+
+    @{
+        ViewData["Title"] = "Ruta de cursos — Educlick";
+    }
+
+    <section class="w-100">
+        <div class="surface-wrapper gradient shadow-sm p-4 p-md-5">
+
+            <!-- Encabezado -->
+            <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+                <h2 class="fw-semibold mb-0">
+                    Descubrí la ruta de cursos ideal para vos en solo 1 clic
+                </h2>
+                <button class="btn btn-outline-dark rounded-pill px-4 fw-semibold">
+                    Comenzá ahora
+                </button>
+            </div>
+
+            <!-- Tarjetas de cursos -->
+            <div class="row g-4">
+
+                <!-- Tarjeta 1 -->
+                <div class="col-12 col-md-6">
+                    <button class="btn btn-course-card w-100 h-100 text-start">
+                        <div class="p-3">
+                            <h3 class="fw-bold fs-5 text-success">Marketing y diseño 1</h3>
+                            <div class="mt-3 text-muted">🎨 Ver curso</div>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Tarjeta 2 -->
+                <div class="col-12 col-md-6">
+                    <button class="btn btn-course-card w-100 h-100 text-start bg-success-subtle">
+                        <div class="p-3">
+                            <h3 class="fw-bold fs-5">Habilidades blandas 2</h3>
+                            <div class="mt-3 text-muted">➡️ Learn more</div>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Tarjeta 3 -->
+                <div class="col-12 col-md-6">
+                    <button class="btn btn-course-card w-100 h-100 text-start bg-success-subtle">
+                        <div class="p-3">
+                            <h3 class="fw-bold fs-5">Emprendimiento y finanzas 2</h3>
+                            <div class="mt-3 text-muted">➡️ Learn more</div>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Tarjeta 4 -->
+                <div class="col-12 col-md-6">
+                    <a class="btn btn-course-card w-100 h-100 text-start" href="@Url.Action("NuevoCurso","Home")">
+                        <div class="p-3 d-flex flex-column align-items-center justify-content-center">
+                            <span class="display-5">➕</span>
+                            <h3 class="fw-bold fs-5 mt-2">Nuevo curso</h3>
+                        </div>
+                    </a>
+                </div>
+
+                @*<div class="col-12 col-md-6">
+            <button class="btn btn-course-card w-100 h-100 text-start">
+                <div class="p-3 d-flex flex-column align-items-center justify-content-center">
+                    <span class="display-5">➕</span>
+                    <h3 class="fw-bold fs-5 mt-2">Nuevo curso</h3>
+                </div>
+            </button>
+        </div>*@
+
+            </div>
+        </div>
     </section>
 
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
-    </div>
+    <style>
+        :root {
+            --ec-surface: #B9FF66;
+            --ec-surface-end: #dcdcdc;
+        }
+
+        .surface-wrapper {
+            min-height: 100vh;
+            background: var(--ec-surface);
+            color: #0b2210;
+            width: 100%;
+            border-radius: 0;
+        }
+
+            .surface-wrapper.gradient {
+                background: linear-gradient( 180deg, var(--ec-surface) 0%, var(--ec-surface) 35%, var(--ec-surface-end) 100% );
+            }
+
+        .btn-course-card {
+            border: 2px solid #000;
+            border-radius: 1rem;
+            background-color: #fff;
+            transition: transform .2s, background-color .2s;
+        }
+
+            .btn-course-card:hover {
+                transform: translateY(-3px);
+                background-color: rgba(0,0,0,.05);
+            }
+
+        .bg-success-subtle {
+            background-color: #B9FF66 !important;
+        }
+    </style>
+
 </main>

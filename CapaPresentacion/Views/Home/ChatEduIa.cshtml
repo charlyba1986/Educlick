@@ -4,5 +4,87 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Chat Edu IA</h2>
+@*<h2>Chat Edu IA</h2>*@
 
+@{
+    ViewData["Title"] = "Chat EDU IA";
+}
+
+<section class="w-100">
+    <div class="surface-wrapper gradient shadow-sm p-4 p-md-5">
+
+        <!-- Fecha -->
+        <p class="text-center text-muted small mb-4">─────── Mayo 15 ───────</p>
+
+        <!-- Mensaje del asistente -->
+        <div class="d-flex gap-3 mb-4">
+            <div class="rounded-circle bg-warning d-flex align-items-center justify-content-center"
+                 style="width:40px; height:40px;">🤖</div>
+            <div>
+                <div class="fw-semibold mb-1">Edu IA <span class="text-muted small">12:23</span></div>
+                <p>
+                    ¡Hola! 😊 Soy Chat Edu, tu aliado en el aprendizaje personalizado.
+                    Puedo ayudarte con generación automática de contenidos adaptados a tu perfil.
+                    Estos son algunos ejemplos de lo que podés pedirme:
+                </p>
+            </div>
+        </div>
+
+        <!-- Botones de sugerencias -->
+        <div class="d-grid gap-3 mb-4">
+            <button class="btn btn-outline-dark rounded-4 text-start">
+                📘 Crear clases o unidades temáticas según tu nivel y objetivos.
+            </button>
+            <button class="btn btn-outline-dark rounded-4 text-start">
+                🧩 Armar ejercicios prácticos personalizados
+            </button>
+            <button class="btn btn-outline-dark rounded-4 text-start">
+                📊 Adaptar materiales según tus fortalezas y áreas a mejorar.
+            </button>
+            <button class="btn btn-outline-dark rounded-4 text-start">
+                💡 Generar actividades interactivas para reforzar lo aprendido.
+            </button>
+        </div>
+
+        <!-- Mensaje de cierre -->
+        <p class="fw-semibold mb-4">
+            Solo decime qué necesitás aprender... ¡y lo armamos juntos! 🚀
+        </p>
+
+        <!-- Input + botón enviar -->
+        <form class="d-flex align-items-center gap-2">
+            <input type="text" class="form-control rounded-pill"
+                   placeholder="Preguntame lo que quieras" />
+            <button type="submit" class="btn btn-dark rounded-circle d-flex align-items-center justify-content-center"
+                    style="width:40px; height:40px;">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </form>
+    </div>
+</section>
+
+<style>
+    :root {
+        --ec-surface: #B9FF66;
+        --ec-surface-end: #dcdcdc;
+    }
+
+    .surface-wrapper {
+        min-height: 100vh;
+        background: var(--ec-surface);
+        color: #0b2210;
+        width: 100%;
+        border-radius: 0;
+    }
+
+        .surface-wrapper.gradient {
+            background: linear-gradient( 180deg, var(--ec-surface) 0%, var(--ec-surface) 35%, var(--ec-surface-end) 100% );
+        }
+
+    button.btn-outline-dark:hover {
+        background: rgba(0,0,0,.05);
+    }
+</style>
+
+<!-- FontAwesome -->
+<script src="https://kit.fontawesome.com/a2e0e9da3a.js" crossorigin="anonymous"></script>

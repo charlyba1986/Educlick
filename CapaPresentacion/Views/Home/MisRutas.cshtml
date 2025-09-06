@@ -4,9 +4,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Mis Rutas</h2>
+@*<h2>Mis Rutas</h2>*@
 <!-- Mis Rutas -->
-<div class="card shadow">
+<!--<div class="card shadow">
     <div class="card-header bg-success text-white">
         <h5 class="mb-0"><i class="fas fa-road me-2"></i>Mis Rutas</h5>
     </div>
@@ -37,11 +37,126 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-
-            <!-- Agregar más rutas -->
-        </div>
+            </div>-->
+<!-- Agregar más rutas -->
+<!--</div>
     </div>
 </div>
-</div>
+</div>-->
+@*@{
+        ViewData["Title"] = "Introducción AI — Ruta Educlick";
+    }*@
+
+@*<!@{
+    ViewData["Title"] = "Introducción AI — Ruta Educlick";
+}*@
+
+<section class="w-100">
+    <div class="surface-wrapper gradient shadow-sm p-4 p-md-5">
+
+        <!-- Encabezado -->
+        <header class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h1 class="h4 mb-1">Introducción AI</h1>
+                <p class="mb-0 ec-muted">Ruta de Educlick</p>
+            </div>
+            <button class="btn btn-dark rounded-3">Iniciar Ruta</button>
+        </header>
+
+        <!-- Cantidad de cursos -->
+        <h2 class="h6 fw-semibold mb-2">3 Cursos</h2>
+        <hr class="opacity-50" />
+
+        <!-- Lista de cursos como botones -->
+        <div class="d-grid gap-3 col-12 col-xl-10 mx-auto mt-4">
+
+            <!-- Curso 1 -->
+            <button type="button" class="btn btn-course text-start d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-3">
+                    <span class="badge rounded-circle bg-light text-dark px-3 py-2">AI</span>
+                    <span class="fw-semibold">Curso de introducción a la Inteligencia Artificial</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="fw-semibold">0%</span>
+                    <div class="progress w-100" style="width: 120px;" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-dark" style="width: 0%"></div>
+                    </div>
+                </div>
+            </button>
+
+            <!-- Curso 2 -->
+            <button type="button" class="btn btn-course text-start d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-3">
+                    <span class="badge rounded-circle bg-light text-dark px-3 py-2">AI</span>
+                    <span class="fw-semibold">Curso de Estrategia y liderazgo Gen AI</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="fw-semibold">0%</span>
+                    <div class="progress w-100" style="width: 120px;" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-dark" style="width: 0%"></div>
+                    </div>
+                </div>
+            </button>
+
+            <!-- Curso 3 -->
+            <button type="button" class="btn btn-course text-start d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-3">
+                    <span class="badge rounded-circle bg-light text-dark px-3 py-2">AI</span>
+                    <span class="fw-semibold">Curso de ChatGPT</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="fw-semibold">0%</span>
+                    <div class="progress w-100" style="width: 120px;" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-dark" style="width: 0%"></div>
+                    </div>
+                </div>
+            </button>
+
+        </div>
+    </div>
+</section>
+
+<style>
+    :root {
+        --ec-surface: #B9FF66;
+        --ec-surface-end: #dcdcdc;
+    }
+
+    .surface-wrapper {
+        min-height: 100vh;
+        background: var(--ec-surface);
+        color: #0b2210;
+        width: 100%;
+        border-radius: 0;
+    }
+
+        .surface-wrapper.gradient {
+            background: linear-gradient(180deg, var(--ec-surface) 0%, var(--ec-surface) 35%, var(--ec-surface-end) 100%);
+        }
+
+    .ec-muted {
+        color: #4a4a4a;
+        font-size: 0.9rem;
+    }
+
+    .btn-course {
+        border: 2px solid #000;
+        border-radius: 1rem;
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 1rem;
+        transition: background-color .2s, transform .1s;
+    }
+
+        .btn-course:hover {
+            background-color: rgba(0,0,0,.05);
+            transform: scale(1.01);
+        }
+
+    .progress {
+        height: 8px;
+    }
+
+    .progress-bar {
+        background-color: #000;
+    }
+</style>

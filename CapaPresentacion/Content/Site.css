@@ -77,6 +77,8 @@
     --bs-link-hover-color: #0a58ca;
     --bs-code-color: #d63384;
     --bs-highlight-bg: #fff3cd;
+    --ec-surface: #B9FF66;
+    --ec-surface-end: #dcdcdc;
 }
 
 *,
@@ -12463,6 +12465,10 @@ body {
         min-height: calc(100vh - 56px);
         margin-left: -225px;
     }
+
+#layoutSidenav_content {
+    background: linear-gradient( 180deg, var(--ec-surface) 0%, var(--ec-surface) 35%, var(--ec-surface-end) 100% ) !important;
+}
 
 .sb-sidenav-toggled #layoutSidenav #layoutSidenav_nav {
     transform: translateX(0);
