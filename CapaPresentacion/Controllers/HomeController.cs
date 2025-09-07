@@ -42,5 +42,10 @@ namespace CapaPresentacion.Controllers
             return View();
         }
 
+        public ActionResult IniciarSesion()
+        {
+            return View();
+        }
+
     }
 }
