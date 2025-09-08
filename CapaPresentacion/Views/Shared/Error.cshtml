@@ -1,14 +1,63 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width" />
-    <title>Error</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title - Educlick</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/site.css" rel="stylesheet" />
 </head>
-<body>
-    <hgroup>
-        <h1>Error.</h1>
-        <h2>Error al procesar la solicitud.</h2>
-    </hgroup>
+<body class="auth-layout">
+    <div class="d-flex w-100 min-vh-100">
+
+        <!-- Columna izquierda -->
+        <div class="auth-left d-flex flex-column justify-content-center p-5 flex-fill">
+            @RenderSection("AuthLeft", required: false)
+        </div>
+
+        <!-- Columna derecha -->
+        <div class="auth-right d-flex flex-column justify-content-center align-items-center p-5 flex-fill bg-light">
+            <div class="w-100" style="max-width: 350px;">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+<style>
+    :root {
+        --ec-surface: #B9FF66;
+        --ec-surface-end: #dcdcdc;
+    }
+
+    .auth-left {
+        background: linear-gradient( 180deg, var(--ec-surface) 0%, var(--ec-surface) 35%, var(--ec-surface-end) 100% );
+        color: #0b2210;
+    }
+
+    .auth-right {
+        background-color: #f8f9fa;
+    }
+
+    .form-control {
+        border: 2px solid #000;
+        border-radius: .5rem;
+        padding: .75rem 1rem;
+    }
+
+    .btn-auth {
+        background: var(--ec-surface);
+        border: 2px solid #000;
+        color: #000;
+        font-weight: 600;
+        padding: .75rem;
+        border-radius: 2rem;
+    }
+
+        .btn-auth:hover {
+            background: #a3e95d;
+        }
+</style>

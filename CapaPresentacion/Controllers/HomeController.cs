@@ -13,34 +13,6 @@ namespace CapaPresentacion.Controllers
             return View();
         }
 
-        public ActionResult MiProgreso()
-        {
-            return View();
-        }
-
-        public ActionResult MisRutas()
-        {
-            return View();
-        }
-        public ActionResult Certificados()
-        {
-            return View();
-        }
-
-        public ActionResult ChatEduIa()
-        {
-            return View();
-        }
-
-        public ActionResult VerPerfil()
-        {
-            return View();
-        }
-
-        public ActionResult NuevoCurso()
-        {
-            return View();
-        }
 
         public ActionResult IniciarSesion()
         {
