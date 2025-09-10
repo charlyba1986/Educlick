@@ -1,0 +1,177 @@
+﻿@{
+    ViewData["Title"] = "Dashboard — Educlick";
+}
+
+<section class="w-100">
+    <div class="surface-wrapper gradient shadow-sm p-4 p-md-5">
+
+        <!-- Fila superior de métricas -->
+        <div class="row g-4 mb-4">
+            <div class="col-12 col-md-4">
+                <div class="card shadow-sm rounded-4 p-4 h-100">
+                    <h6 class="fw-semibold">Seguimiento de planes</h6>
+                    <p class="display-6 fw-bold mb-0">15% <span class="text-success">↑</span></p>
+                    <small class="text-muted">Incremento comparado con la semana pasada</small>
+                    <div class="mt-2"><a href="#" class="fw-semibold small">Revenues report →</a></div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="card shadow-sm rounded-4 p-4 h-100">
+                    <h6 class="fw-semibold">Alertas</h6>
+                    <p class="display-6 fw-bold mb-0">10%</p>
+                    <small class="text-muted">Alertas pendientes</small>
+                    <div class="mt-2"><a href="#" class="fw-semibold small">All deals →</a></div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="card shadow-sm rounded-4 p-4 h-100 text-center">
+                    <h6 class="fw-semibold mb-3">Capacidad</h6>
+                    <canvas id="gaugeChart" height="120"></canvas>
+                    <p class="fw-bold mt-2">84% <small class="text-muted">All goals</small></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fila intermedia -->
+        <div class="row g-4 mb-4">
+            <!-- Alumnos -->
+            <div class="col-12 col-md-6">
+                <div class="card shadow-sm rounded-4 p-4 h-100">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h6 class="fw-semibold">Alumnos</h6>
+                        <small class="text-muted">Filtro por curso ⌄</small>
+                    </div>
+
+                    <ul class="list-unstyled mb-3">
+                        <li class="d-flex align-items-center justify-content-between py-2 border-bottom">
+                            <div>
+                                <strong>Chris Friedcky</strong><br>
+                                <small class="text-muted">Supermarket Villanova</small>
+                            </div>
+                        </li>
+                        <li class="d-flex align-items-center justify-content-between py-2 border-bottom bg-light rounded">
+                            <div>
+                                <strong>Maggie Johnson</strong><br>
+                                <small class="text-muted">Oasis Organic Inc.</small>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <a href="#" class="text-muted">⭐</a>
+                                <a href="#" class="text-muted">✏️</a>
+                                <a href="#" class="text-muted">⋮</a>
+                            </div>
+                        </li>
+                        <li class="d-flex align-items-center justify-content-between py-2 border-bottom">
+                            <div>
+                                <strong>Gael Harry</strong><br>
+                                <small class="text-muted">New York Fruits</small>
+                            </div>
+                        </li>
+                        <li class="d-flex align-items-center justify-content-between py-2">
+                            <div>
+                                <strong>Jenna Sullivan</strong><br>
+                                <small class="text-muted">Walmart</small>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <a href="#" class="fw-semibold small">Todos los alumnos →</a>
+                </div>
+            </div>
+
+            <!-- Evolución del curso -->
+            <div class="col-12 col-md-6">
+                <div class="card shadow-sm rounded-4 p-4 h-100">
+                    <div class="d-flex justify-content-between mb-2">
+                        <h6 class="fw-semibold">Evolución del curso</h6>
+                        <small class="text-muted">Anual ⌄</small>
+                    </div>
+                    <canvas id="courseChart" height="150"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fila inferior -->
+        <div class="row g-4">
+            <div class="col-12 col-md-4">
+                <div class="card shadow-sm rounded-4 p-4 text-center">
+                    <h6 class="fw-semibold">Top mes</h6>
+                    <p class="fw-bold text-warning fs-4">November<br><small>2019</small></p>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="card shadow-sm rounded-4 p-4 text-center">
+                    <h6 class="fw-semibold">Top año</h6>
+                    <p class="fw-bold fs-4">2023<br><small class="text-muted">96k inscriptos</small></p>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="card shadow-sm rounded-4 p-4 text-center">
+                    <h6 class="fw-semibold">Top alumno</h6>
+                    <p class="fw-bold fs-5">Maggie Johnson</p>
+                    <small class="text-muted">Oasis Organic Inc.</small>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<style>
+    :root {
+        --ec-surface: #B9FF66;
+        --ec-surface-end: #dcdcdc;
+    }
+
+    .surface-wrapper {
+        min-height: 100vh;
+        background: linear-gradient(180deg, var(--ec-surface) 0%, var(--ec-surface) 35%, var(--ec-surface-end) 100%);
+        color: #0b2210;
+        border-radius: 0;
+    }
+
+    .card {
+        border: 2px solid #000;
+        border-radius: 1rem;
+    }
+</style>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+    // Gauge Chart
+    const ctxGauge = document.getElementById('gaugeChart').getContext('2d');
+    new Chart(ctxGauge, {
+        type: 'doughnut',
+        data: {
+            datasets: [{
+                data: [84, 16],
+                backgroundColor: ['#000', '#e0e0e0'],
+                borderWidth: 0,
+                circumference: 270,
+                rotation: 225,
+                cutout: '75%'
+            }]
+        },
+        options: { plugins: { legend: { display: false } }, responsive: true }
+    });
+
+    // Evolución del curso
+    const ctxCourse = document.getElementById('courseChart').getContext('2d');
+    new Chart(ctxCourse, {
+        type: 'line',
+        data: {
+            labels: ['2019', '2020', '2021', '2022', '2023'],
+            datasets: [{
+                data: [20, 50, 30, 60, 90],
+                borderColor: '#000',
+                backgroundColor: 'rgba(0,0,0,0.1)',
+                fill: true,
+                tension: 0.3
+            }]
+        },
+        options: {
+            plugins: { legend: { display: false } },
+            scales: { y: { beginAtZero: true } }
+        }
+    });
+</script>

@@ -1,0 +1,130 @@
+﻿@{
+    Layout= "~/Views/Shared/_LayoutProfesor.cshtml";
+    ViewData["Title"] = "Editar perfil docente — Educlick";
+}
+
+<section class="w-100">
+    <div class="surface-wrapper gradient shadow-sm p-4 p-md-5">
+
+        <h1 class="h4 fw-bold mb-4">Tus datos</h1>
+
+        <form class="row g-4">
+
+            <!-- Columna izquierda -->
+            <div class="col-12 col-lg-8">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Nombres</label>
+                        <input type="text" class="form-control" value="Jair" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Apellidos</label>
+                        <input type="text" class="form-control" value="Quiroga Assat" />
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" value="Jairqassat" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" value="jair@gmail.com" />
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Teléfono móvil</label>
+                        <input type="tel" class="form-control" />
+                    </div>
+                </div>
+
+                <!-- Información de trabajo -->
+                <div class="mt-4">
+                    <h2 class="h6 fw-bold mb-3">Información de trabajo</h2>
+
+                    <table class="table table-bordered align-middle">
+                        <tbody>
+                            <tr>
+                                <td><strong>Compañía</strong></td>
+                                <td><a href="#" class="text-primary">Agregar compañía</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Título profesional</strong></td>
+                                <td><a href="#" class="text-primary">Agregar título</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Departamento</strong></td>
+                                <td><a href="#" class="text-primary">Agregar departamento</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Experiencia laboral</strong></td>
+                                <td><a href="#" class="text-primary">Agregar experiencia</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Referencias</strong></td>
+                                <td><a href="#" class="text-primary">Agregar referencia</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>LinkedIn</strong></td>
+                                <td><a href="#" class="text-primary">Agregar linkedin</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Columna derecha: imagen -->
+            <div class="col-12 col-lg-4">
+                <div class="border rounded p-4 h-100 text-center">
+                    <div class="mb-3">
+                        <img src="https://via.placeholder.com/100x100.png?text=👤"
+                             alt="Imagen de perfil"
+                             class="img-fluid rounded-circle" />
+                    </div>
+                    <p class="small mb-1">Arrastra aquí tu imagen de perfil</p>
+                    <a href="#" class="fw-semibold text-success">o sube una foto.</a>
+                </div>
+            </div>
+
+            <!-- Botón Guardar -->
+            <div class="col-12">
+                <button type="submit" class="btn btn-dark rounded-pill px-4">
+                    Guardar cambios
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<style>
+    :root {
+        --ec-surface: #B9FF66;
+        --ec-surface-end: #dcdcdc;
+    }
+
+    .surface-wrapper {
+        min-height: 100vh;
+        background: linear-gradient( 180deg, var(--ec-surface) 0%, var(--ec-surface) 35%, var(--ec-surface-end) 100% );
+        color: #0b2210;
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .form-control {
+        border: 2px solid #000;
+        border-radius: .5rem;
+    }
+
+    .btn-dark {
+        font-weight: 600;
+    }
+
+    .table {
+        background: #f8f9fa;
+        border: 2px solid #000;
+    }
+
+        .table td {
+            border: 1px solid #000;
+        }
+</style>
+

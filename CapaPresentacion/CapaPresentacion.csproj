@@ -122,6 +122,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AlumnoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProfesorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -228,6 +229,9 @@
     <Content Include="Views\Alumno\NuevoCurso.cshtml" />
     <Content Include="Views\Home\IniciarSesion.cshtml" />
     <Content Include="Views\Alumno\Index.cshtml" />
+    <Content Include="Views\Profesor\Details.cshtml" />
+    <Content Include="Views\Profesor\EditarPerfil.cshtml" />
+    <Content Include="Views\Shared\_LayoutProfesor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
