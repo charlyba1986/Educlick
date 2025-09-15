@@ -1,0 +1,145 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutProfesor.cshtml";
+    ViewBag.Title = "VerReportes";
+
+}
+
+
+
+<section class="w-100">
+    <div class="surface-wrapper gradient shadow-sm p-4 p-md-5">
+
+        <h1 class="h4 fw-bold mb-4">Reportes</h1>
+
+        <!-- Filtros -->
+        <div class="row g-3 mb-4">
+            <div class="col-12 col-md-4">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Curso" />
+                    <span class="input-group-text">🔍</span>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="input-group">
+                    <input type="date" class="form-control" />
+                    <span class="input-group-text">📅</span>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Alumno" />
+                    <span class="input-group-text">🔍</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- KPIs -->
+        <div class="row g-4 mb-4">
+            <div class="col-12 col-md-4">
+                <div class="card shadow-sm rounded-4 p-3 text-center">
+                    <h6 class="fw-semibold">Avance promedio</h6>
+                    <canvas id="avanceChart" height="120"></canvas>
+                    <p class="mt-2">88%</p>
+                    <a href="#" class="small fw-semibold">Exportar PDF →</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="card shadow-sm rounded-4 p-3 text-center">
+                    <h6 class="fw-semibold">Participación general</h6>
+                    <canvas id="participacionChart" height="120"></canvas>
+                    <p class="mt-2">88%</p>
+                    <a href="#" class="small fw-semibold">Exportar PDF →</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="card shadow-sm rounded-4 p-3 text-center">
+                    <h6 class="fw-semibold">Planes abandonados</h6>
+                    <canvas id="abandonoChart" height="120"></canvas>
+                    <p class="mt-2">88%</p>
+                    <a href="#" class="small fw-semibold">Exportar PDF →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabla -->
+        <div class="table-responsive">
+            <table class="table table-bordered align-middle text-center">
+                <thead class="table-light fw-bold">
+                    <tr>
+                        <th>Alumno</th>
+                        <th>Curso</th>
+                        <th>Plan</th>
+                        <th>Ult. actividad</th>
+                        <th>Informe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Alumno A</td><td>Curso A</td><td>Plan A</td><td>10/05/2025</td><td><a href="#">Ver</a></td></tr>
+                    <tr><td>Alumno B</td><td>Curso B</td><td>Plan B</td><td>06/04/2025</td><td><a href="#">Ver</a></td></tr>
+                    <tr><td>Alumno C</td><td>Curso C</td><td>Plan C</td><td>06/05/2025</td><td><a href="#">Ver</a></td></tr>
+                    <tr><td>Alumno D</td><td>Curso D</td><td>Plan D</td><td>16/04/2025</td><td><a href="#">Ver</a></td></tr>
+                    <tr><td>Alumno E</td><td>Curso E</td><td>Plan E</td><td>21/04/2025</td><td><a href="#">Ver</a></td></tr>
+                    <tr><td>Alumno F</td><td>Curso F</td><td>Plan F</td><td>30/04/2025</td><td><a href="#">Ver</a></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<style>
+    :root {
+        --ec-surface: #B9FF66;
+        --ec-surface-end: #dcdcdc;
+    }
+
+    .surface-wrapper {
+        min-height: 100vh;
+        background: linear-gradient( 180deg, var(--ec-surface) 0%, var(--ec-surface) 35%, var(--ec-surface-end) 100% );
+        color: #0b2210;
+    }
+
+    .card {
+        border: 2px solid #000;
+        border-radius: 1rem;
+    }
+
+    .form-control {
+        border: 2px solid #000;
+    }
+
+    .table {
+        border: 2px solid #000;
+    }
+
+        .table td, .table th {
+            border: 1px solid #000;
+        }
+</style>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+    function createGauge(ctx, value, color) {
+        return new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [value, 100 - value],
+                    backgroundColor: [color, '#e0e0e0'],
+                    borderWidth: 0,
+                    circumference: 270,
+                    rotation: 225,
+                    cutout: '75%'
+                }]
+            },
+            options: { plugins: { legend: { display: false } }, responsive: true }
+        });
+    }
+
+    createGauge(document.getElementById('avanceChart').getContext('2d'), 88, 'green');
+    createGauge(document.getElementById('participacionChart').getContext('2d'), 88, 'green');
+    createGauge(document.getElementById('abandonoChart').getContext('2d'), 88, 'red');
+</script>
+
+

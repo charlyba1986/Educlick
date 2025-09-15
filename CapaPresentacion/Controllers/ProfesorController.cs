@@ -48,42 +48,26 @@ namespace CapaPresentacion.Controllers
             return View();
         }
 
-        // POST: Profesor/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        // Get: Profesor/Edit/5
+    
+        public ActionResult VerReportes()
         {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
             {
                 return View();
             }
         }
 
-        // GET: Profesor/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult SeguimientoAlumnos ()
         {
             return View();
         }
 
-        // POST: Profesor/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Alertas()
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return View();
         }
+
+       
+    
     }
 }

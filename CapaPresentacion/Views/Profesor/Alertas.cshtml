@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "Alertas";
+    Layout = "~/Views/Shared/_LayoutProfesor.cshtml";
+}
+
+<h2>Alertas</h2>
+
+@{
+    ViewData["Title"] = "Alertas de riesgo — Educlick";
+}
+
+<section class="w-100">
+    <div class="surface-wrapper gradient shadow-sm p-4 p-md-5">
+
+        <h1 class="h4 fw-bold mb-4">Alertas de riesgo</h1>
+
+        <div class="list-group">
+
+            <!-- Alerta 1 -->
+            <div class="list-group-item d-flex justify-content-between align-items-center mb-3 rounded-4 border-2">
+                <div class="d-flex align-items-center gap-3">
+                    <span class="fs-3">⚠️</span>
+                    <div>
+                        <strong>Alumno A | Plan A</strong><br>
+                        <small class="text-muted">Faltas recurrentes</small>
+                    </div>
+                </div>
+                <button class="btn btn-alert">Enviar notificación</button>
+            </div>
+
+            <!-- Alerta 2 -->
+            <div class="list-group-item d-flex justify-content-between align-items-center mb-3 rounded-4 border-2">
+                <div class="d-flex align-items-center gap-3">
+                    <span class="fs-3">⚠️</span>
+                    <div>
+                        <strong>Alumno B | Plan B</strong><br>
+                        <small class="text-muted">Baja participación</small>
+                    </div>
+                </div>
+                <button class="btn btn-alert">Enviar notificación</button>
+            </div>
+
+            <!-- Alerta 3 -->
+            <div class="list-group-item d-flex justify-content-between align-items-center mb-3 rounded-4 border-2">
+                <div class="d-flex align-items-center gap-3">
+                    <span class="fs-3">⚠️</span>
+                    <div>
+                        <strong>Alumno C | Plan C</strong><br>
+                        <small class="text-muted">Bajo porcentaje de avance</small>
+                    </div>
+                </div>
+                <button class="btn btn-alert">Enviar notificación</button>
+            </div>
+
+            <!-- Alerta 4 -->
+            <div class="list-group-item d-flex justify-content-between align-items-center mb-3 rounded-4 border-2">
+                <div class="d-flex align-items-center gap-3">
+                    <span class="fs-3">⚠️</span>
+                    <div>
+                        <strong>Alumno D | Plan D</strong><br>
+                        <small class="text-muted">No presentó última tarea</small>
+                    </div>
+                </div>
+                <button class="btn btn-alert">Enviar notificación</button>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<style>
+    :root {
+        --ec-surface: #B9FF66;
+        --ec-surface-end: #dcdcdc;
+    }
+
+    .surface-wrapper {
+        min-height: 100vh;
+        background: linear-gradient( 180deg, var(--ec-surface) 0%, var(--ec-surface) 35%, var(--ec-surface-end) 100% );
+        color: #0b2210;
+    }
+
+    .list-group-item {
+        background: #fff;
+        border: 2px solid #000;
+    }
+
+    .btn-alert {
+        background: var(--ec-surface);
+        border: 2px solid #000;
+        font-weight: 600;
+        border-radius: .75rem;
+        padding: .5rem 1rem;
+    }
+
+        .btn-alert:hover {
+            background: #a3e95d;
+        }
+</style>

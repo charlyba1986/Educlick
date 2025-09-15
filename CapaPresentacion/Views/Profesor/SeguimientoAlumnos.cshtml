@@ -1,0 +1,157 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutProfesor.cshtml";
+    ViewBag.Title = "SeguimientoAlumnos";
+
+}
+
+<h2>SeguimientoAlumnos</h2>
+
+@{
+    ViewData["Title"] = "Seguimiento de planes — Educlick";
+}
+
+<section class="w-100">
+    <div class="surface-wrapper gradient shadow-sm p-4 p-md-5">
+
+        <h1 class="h4 fw-bold mb-4">Seguimiento de planes</h1>
+
+        <!-- KPIs -->
+        <div class="row g-4 mb-4">
+            <div class="col-12 col-md-4">
+                <div class="card shadow-sm rounded-4 p-3 text-center">
+                    <h6 class="fw-semibold">Promedio general de avance</h6>
+                    <canvas id="avanceChart" height="120"></canvas>
+                    <p class="mt-2">88%</p>
+                    <a href="#" class="small fw-semibold">Reportes →</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="card shadow-sm rounded-4 p-3 text-center">
+                    <h6 class="fw-semibold">Porcentaje de participación</h6>
+                    <canvas id="participacionChart" height="120"></canvas>
+                    <p class="mt-2">88%</p>
+                    <a href="#" class="small fw-semibold">Reportes →</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="card shadow-sm rounded-4 p-3 text-center">
+                    <h6 class="fw-semibold">Porcentaje de abandono</h6>
+                    <canvas id="abandonoChart" height="120"></canvas>
+                    <p class="mt-2">88%</p>
+                    <a href="#" class="small fw-semibold">Reportes →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Métricas rápidas + tabla -->
+        <div class="row g-4">
+            <div class="col-12 col-md-6">
+                <div class="row g-3">
+                    <div class="col-6">
+                        <div class="card shadow-sm rounded-4 p-4 text-center">
+                            <h6 class="fw-semibold">Activos</h6>
+                            <p class="display-6 fw-bold mb-0">18</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card shadow-sm rounded-4 p-4 text-center">
+                            <h6 class="fw-semibold">Finalizados</h6>
+                            <p class="display-6 fw-bold mb-0">8</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card shadow-sm rounded-4 p-4 text-center">
+                            <h6 class="fw-semibold">Sin avances</h6>
+                            <p class="display-6 fw-bold mb-0">5</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card shadow-sm rounded-4 p-4 text-center">
+                            <h6 class="fw-semibold">En revisión</h6>
+                            <p class="display-6 fw-bold mb-0">5</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabla de seguimiento individual -->
+            <div class="col-12 col-md-6">
+                <div class="card shadow-sm rounded-4 p-4 h-100">
+                    <h6 class="fw-semibold mb-3">Seguimiento individual por alumno</h6>
+                    <table class="table table-bordered align-middle text-center">
+                        <thead class="table-light fw-bold">
+                            <tr>
+                                <th>Alumno</th>
+                                <th>Plan</th>
+                                <th>Progreso</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Alumno B</td><td>Plan B</td><td>88%</td></tr>
+                            <tr><td>Alumno C</td><td>Plan C</td><td>57%</td></tr>
+                            <tr><td>Alumno D</td><td>Plan D</td><td>76%</td></tr>
+                            <tr><td>Alumno E</td><td>Plan E</td><td>45%</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<style>
+    :root {
+        --ec-surface: #B9FF66;
+        --ec-surface-end: #dcdcdc;
+    }
+
+    .surface-wrapper {
+        min-height: 100vh;
+        background: linear-gradient( 180deg, var(--ec-surface) 0%, var(--ec-surface) 35%, var(--ec-surface-end) 100% );
+        color: #0b2210;
+    }
+
+    .card {
+        border: 2px solid #000;
+        border-radius: 1rem;
+    }
+
+    .form-control {
+        border: 2px solid #000;
+    }
+
+    .table {
+        border: 2px solid #000;
+    }
+
+        .table td, .table th {
+            border: 1px solid #000;
+        }
+</style>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+    function createGauge(ctx, value, color) {
+        return new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [value, 100 - value],
+                    backgroundColor: [color, '#e0e0e0'],
+                    borderWidth: 0,
+                    circumference: 270,
+                    rotation: 225,
+                    cutout: '75%'
+                }]
+            },
+            options: { plugins: { legend: { display: false } }, responsive: true }
+        });
+    }
+
+    createGauge(document.getElementById('avanceChart').getContext('2d'), 88, 'green');
+    createGauge(document.getElementById('participacionChart').getContext('2d'), 88, 'green');
+    createGauge(document.getElementById('abandonoChart').getContext('2d'), 88, 'red');
+</script>
