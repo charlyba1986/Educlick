@@ -19,5 +19,15 @@ namespace CapaPresentacion.Controllers
             return View();
         }
 
+        //public IActtionResult IniciarSesion(string email, string password)
+        //{
+        //    var  usuario = _usuariosService.Autenticar(email, password);
+
+        //    if (usuario == null)
+        //    {
+
+        //        HttpContext.Session.SetString("Rol", usuario.Rol);
+        //    }
+        //}
     }
 }
