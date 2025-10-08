@@ -16,18 +16,28 @@ namespace CapaPresentacion.Controllers
 
         public ActionResult IniciarSesion()
         {
+            
             return View();
         }
 
-        //public IActtionResult IniciarSesion(string email, string password)
-        //{
-        //    var  usuario = _usuariosService.Autenticar(email, password);
+        [HttpPost]
+        public ActionResult VerificarUsuario(string Usuario, string Contra)
+        {
+            // Aquí iría la lógica para verificar el usuario y la contraseña
+            // Por simplicidad, asumimos que el usuario es "admin" y la contraseña es "password"
+            if (Usuario == "admin@gmail.com" && Contra == "123456")
+            {
+                // Usuario y contraseña correctos
+                return RedirectToAction("Index","Alumno");
+            }
+            else
+            {
+                // Usuario o contraseña incorrectos
+                ViewBag.Error = "Usuario o contraseña incorrectos";
+                return View("IniciarSesion");
+            }
+        }
 
-        //    if (usuario == null)
-        //    {
 
-        //        HttpContext.Session.SetString("Rol", usuario.Rol);
-        //    }
-        //}
     }
 }
