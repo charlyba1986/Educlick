@@ -18,5 +18,6 @@ namespace CapaEntidad
         public string Apellido { get; set; }
         public  int Telefono { get; set; }
 
+        public  List<UsuarioCurso> UsuarioCursos { get; set; }
     }
 }
