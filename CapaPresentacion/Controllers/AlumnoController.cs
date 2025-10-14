@@ -3,15 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CapaEntidad;
+using CapaDatos;
 
 namespace CapaPresentacion.Controllers
 {
     public class AlumnoController : Controller
     {
         // GET: Alumno
+        //public ActionResult Index()
+        //{
+        //    return View();
+        //}
         public ActionResult Index()
         {
-            return View();
+            int idUsuario = Convert.ToInt32(Session["UsuarioId"]);
+
+            AlumnoData alumnoData = new AlumnoData();
+            List<CapaEntidad.Curso> cursosInscriptos = alumnoData.VerificarCursosInscriptos(idUsuario);
+
+            return View(cursosInscriptos);
         }
 
         public ActionResult MiProgreso()
