@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaDatos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -65,6 +66,31 @@ namespace CapaPresentacion.Controllers
         public ActionResult Alertas()
         {
             return View();
+        }
+
+        public ActionResult GuardarCurso(Curso curso)
+        {
+            try
+            {
+                int idProfesor = Convert.ToInt32(Session["UsuarioID"]);
+                ProfesorData profesor = new ProfesorData();
+                bool exito = profesor.GuardarCurso(curso, idProfesor);
+
+                if (exito)
+                {
+                    TempData["Mensaje"] = "El curso fue creado correctamente";
+                }
+                else
+                {
+                    TempData["Mensaje"] = "No se puede guardar el curso";
+                }
+                return RedirectToAction("NuevoCurso");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
        
