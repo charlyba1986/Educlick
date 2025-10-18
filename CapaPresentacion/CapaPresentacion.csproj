@@ -236,6 +236,7 @@
     <Content Include="Views\Profesor\SeguimientoAlumnos.cshtml" />
     <Content Include="Views\Profesor\Alertas.cshtml" />
     <Content Include="Views\Shared\_LayoutBackofice.cshtml" />
+    <Content Include="Views\Profesor\NuevoCurso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -68,7 +68,7 @@ namespace CapaPresentacion.Controllers
             return View();
         }
 
-        public ActionResult GuardarCurso(Curso curso)
+        public ActionResult GuardarCurso(CapaEntidad.Curso curso)
         {
             try
             {
@@ -91,6 +91,12 @@ namespace CapaPresentacion.Controllers
 
                 throw;
             }
+        }
+
+        [HttpGet]
+        public ActionResult NuevoCurso()
+        {
+            return View();
         }
 
        

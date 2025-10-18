@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Crear nuevo curso";
+    Layout = "~/Views/Shared/_LayoutProfesor.cshtml";
+}
+
+
+
+<main class="container mt-5">
+    <h2 class="fw-semibold mb-4">Crear un nuevo curso</h2>
+
+    <form asp-action="GuardarCurso" method="post" class="p-4 border rounded bg-light shadow-sm">
+        <div class="mb-3">
+            <label for="Nombre" class="form-label">Nombre del curso</label>
+            <input type="text" id="Nombre" name="Nombre" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="Descripcion" class="form-label">Descripción</label>
+            <textarea id="Descripcion" name="Descripcion" class="form-control" rows="3" required></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="DuracionHoras" class="form-label">Duración (horas)</label>
+            <input type="number" id="DuracionHoras" name="DuracionHoras" class="form-control" min="1" required />
+        </div>
+
+        <button type="submit" class="btn btn-success rounded-pill px-4 fw-semibold">Guardar curso</button>
+    </form>
+
+    @if (TempData["Mensaje"] != null)
+    {
+        <div class="alert alert-info mt-3">@TempData["Mensaje"]</div>
+    }
+</main>
+
