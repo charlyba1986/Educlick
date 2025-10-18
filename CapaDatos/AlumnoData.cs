@@ -10,10 +10,11 @@ namespace CapaDatos
 {
     public class AlumnoData
     {
+        private readonly string connectionString = @"Data Source=JAIRQUIROGAASSA\SQLEXPRESS;Initial Catalog=Educlick;Integrated Security=True;TrustServerCertificate=True";
         public List<CapaEntidad.Curso> VerificarCursosInscriptos(int idUsuario)
         {
             List<CapaEntidad.Curso> cursos = new List<CapaEntidad.Curso>();
-            string connectionString = "TU_CONNECTION_STRING";
+         
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -43,6 +44,27 @@ namespace CapaDatos
 
             return cursos;
         }
+        public bool InscribirseEnCurso(int idUsuario, int idCurso)
+        {
+            bool exito = false;            
 
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"
+            INSERT INTO UsuarioCurso (IdUsuario, IdCurso, FechaInscripcion, Estado)
+            VALUES (@idUsuario, @idCurso, GETDATE(), 'Activo')";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@idUsuario", idUsuario);
+                command.Parameters.AddWithValue("@idCurso", idCurso);
+
+                connection.Open();
+                int filas = command.ExecuteNonQuery();
+
+                exito = filas > 0;
+            }
+
+            return exito;
+        }
     }
 }

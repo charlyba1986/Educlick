@@ -35,6 +35,10 @@ namespace CapaPresentacion.Controllers
 
                 if(usuarioEncontrado != null && usuarioEncontrado.Password == Contra)
                 {
+                    Session["Usuario"]=usuarioEncontrado;
+                    Session["NombreCompleto"]= usuarioEncontrado.Nombre +""+usuarioEncontrado.Apellido;
+                    Session["Rol"] = usuarioEncontrado.Rol;
+                    Session["UsuarioID"]= usuarioEncontrado.Id;
                     // Usuario y contraseña correctos
                     if(usuarioEncontrado.Rol == "Admin")
                     {
@@ -63,19 +67,7 @@ namespace CapaPresentacion.Controllers
                 return View("IniciarSesion");
             }
 
-            // Aquí iría la lógica para verificar el usuario y la contraseña
-            // Por simplicidad, asumimos que el usuario es "admin" y la contraseña es "password"
-            //if (Usuario == "admin@gmail.com" && Contra == "123456")
-            //{
-            //    Usuario y contraseña correctos
-            //    return RedirectToAction("Index", "Alumno");
-            //}
-            //else
-            //{
-            //    Usuario o contraseña incorrectos
-            //    ViewBag.Error = "Usuario o contraseña incorrectos";
-            //    return View("IniciarSesion");
-            //}
+            
         }
 
 

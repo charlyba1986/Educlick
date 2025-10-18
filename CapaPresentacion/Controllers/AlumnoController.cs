@@ -53,5 +53,31 @@ namespace CapaPresentacion.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult InscribirseEnCurso(int idCurso)
+        {
+            try
+            {
+                int idUsuario = Convert.ToInt32(Session["usuarioID"]);
+                AlumnoData alumno = new AlumnoData();
+                bool exito = alumno.InscribirseEnCurso(idUsuario, idCurso);
+
+                if(exito)
+                {
+                    TempData["Mensaje"] = "Te inscribiste correctamente en el curso";
+                }
+                else
+                {
+                    TempData["Mensaje"] = "No se pudo complpetar la inscripcion";
+                }
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["Mensaje"]= "Error al inscribirse"+ex.Message;
+                return RedirectToAction("Index");
+            }
+        }
     }
 }
