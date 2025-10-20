@@ -9,7 +9,7 @@
 <main class="container mt-5">
     <h2 class="fw-semibold mb-4">Crear un nuevo curso</h2>
 
-    <form asp-action="GuardarCurso" method="post" class="p-4 border rounded bg-light shadow-sm">
+    <form action="@Url.Action("GuardarCurso","Profesor")" method="post" class="p-4 border rounded bg-light shadow-sm">
         <div class="mb-3">
             <label for="Nombre" class="form-label">Nombre del curso</label>
             <input type="text" id="Nombre" name="Nombre" class="form-control" required />

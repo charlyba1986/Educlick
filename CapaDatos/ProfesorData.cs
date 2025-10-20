@@ -19,13 +19,13 @@ namespace CapaDatos
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string query = @"INSERT INTO Curso (Nombre, Descripcion, DuracionHoras, IdProfesor) VALUES (@nombre, @descripcion, @duracion, @idProfesor)";
+                string query = @"INSERT INTO Curso (Nombre, Descripcion, DuracionHoras, IdProfesor) VALUES (@nombre, @descripcion, @duracionHoras, @idProfesor)";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@nombre", curso.Nombre);
                 command.Parameters.AddWithValue("@descripcion", curso.Descripcion);
                 command.Parameters.AddWithValue("@DuracionHoras",curso.DuracionHoras);
-                command.Parameters.AddWithValue("@IddProfesor", idProfesor);
+                command.Parameters.AddWithValue("@IdProfesor", idProfesor);
 
                 int filas =command.ExecuteNonQuery();
 
