@@ -51,7 +51,18 @@ namespace CapaPresentacion.Controllers
 
         public ActionResult NuevoCurso()
         {
-            return View();
+            try
+            {
+                CursoData cursoData = new CursoData();
+                var cursos = cursoData.ObtenerCursos();
+                return View(cursos);
+            }
+            catch (Exception ex)
+            {
+                TempData["Mensaje"] = "Error al cargar los cursos: " + ex.Message;
+                return View(new List<Curso>());
+            }
+           
         }
 
         [HttpPost]

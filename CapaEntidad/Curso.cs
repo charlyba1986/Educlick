@@ -12,6 +12,7 @@ namespace CapaEntidad
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public int DuracionHoras { get; set; }
+        public int IdProfesor { get; set; }
 
         public List<UsuarioCurso> UsuarioCurso { get; set; }
     }
