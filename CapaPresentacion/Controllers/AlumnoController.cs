@@ -65,7 +65,7 @@ namespace CapaPresentacion.Controllers
            
         }
 
-        [HttpPost]
+       
         public ActionResult InscribirseEnCurso(int idCurso)
         {
             try
