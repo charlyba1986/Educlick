@@ -90,5 +90,12 @@ namespace CapaPresentacion.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+
+        public ActionResult CerrarSesion()
+        {
+            Session.Clear();
+            return RedirectToAction("IniciarSesion", "Home");
+        }
     }
 }

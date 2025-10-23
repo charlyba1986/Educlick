@@ -1,4 +1,27 @@
-﻿<main class="p-0 m-0">
+﻿<!--<main class="p-0 m-0">
+    <section class="w-100 m-0 p-0">
+        <div class="surface-wrapper gradient d-flex flex-column justify-content-center align-items-center text-center">-->
+<!-- Encabezado centrado -->
+<!--<div class="hero-content mb-5">
+    <h2 class="fw-bold fs-3 mb-4">
+        Descubrí la ruta de cursos ideal para vos en solo 1 clic
+    </h2>
+    <button class="btn btn-outline-dark rounded-pill px-5 py-2 fw-semibold fs-5">
+        Comenzá ahora
+    </button>
+</div>-->
+<!-- Mensaje si no tiene cursos -->
+<!--<div class="text-center mt-4">
+            <h4 class="fw-semibold mb-4">Aún no estás inscripto en ningún curso.</h4>
+            <a href="@Url.Action("NuevoCurso","Alumno")" class="btn btn-dark rounded-pill px-4 py-3 fw-semibold fs-5">
+                ➕ Inscribirme a un curso
+            </a>
+        </div>
+    </div>
+</section>-->
+@model List<CapaEntidad.Curso>
+
+<main class="p-0 m-0">
     <section class="w-100 m-0 p-0">
         <div class="surface-wrapper gradient d-flex flex-column justify-content-center align-items-center text-center">
 
@@ -12,84 +35,122 @@
                 </button>
             </div>
 
-            <!-- Mensaje si no tiene cursos -->
-            <div class="text-center mt-4">
-                <h4 class="fw-semibold mb-4">Aún no estás inscripto en ningún curso.</h4>
+            <!-- Si el alumno tiene cursos -->
+            @if (Model != null && Model.Any())
+            {
+                <div class="container mt-4">
+                    <h4 class="fw-semibold mb-4">Mis cursos actuales</h4>
+
+                    <div class="row g-4 justify-content-center">
+                        @foreach (var curso in Model)
+                        {
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="card course-card h-100 shadow-sm p-4 d-flex flex-column justify-content-between">
+                                    <div>
+                                        <h5 class="fw-bold">@curso.Nombre</h5>
+                                        <p class="text-muted small">@curso.Descripcion</p>
+                                    </div>
+                                    <div class="mt-3">
+                                        <a href="@Url.Action("VerCurso", "Alumno", new { id = curso.IdCurso })"
+                                           class="btn btn-dark rounded-pill w-100">
+                                            Ver curso
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+            else
+            {
+                <!-- Si no tiene cursos -->
+                <div class="text-center mt-4">
+                    <h4 class="fw-semibold mb-4">Aún no estás inscripto en ningún curso.</h4>
+                </div>
+            }
+
+            <!-- Botón para inscribirse siempre visible -->
+            <div class="mt-5">
                 <a href="@Url.Action("NuevoCurso","Alumno")" class="btn btn-dark rounded-pill px-4 py-3 fw-semibold fs-5">
                     ➕ Inscribirme a un curso
                 </a>
             </div>
+
         </div>
     </section>
+</main>
 
-    <style>
-        :root {
-            --ec-surface: #B9FF66;
-            --ec-surface-end: #dcdcdc;
-        }
+<style>
+    :root {
+        --ec-surface: #B9FF66;
+        --ec-surface-end: #dcdcdc;
+    }
 
-        main,
-        #layoutSidenav_content main,
-        .container-fluid.px-4 {
-            padding: 0 !important;
-            margin: 0 !important;
-            max-width: 100% !important;
-        }
+    main,
+    #layoutSidenav_content main,
+    .container-fluid.px-4 {
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+    }
 
-        body {
-            overflow-x: hidden;
-            background-color: var(--ec-surface);
-        }
+    body {
+        overflow-x: hidden;
+        background-color: var(--ec-surface);
+    }
 
-        /* Fondo completo */
-        .surface-wrapper {
-            width: 100vw; /* ocupa todo el ancho del viewport */
-            min-height: 100vh;
-            background: linear-gradient(180deg, var(--ec-surface) 0%, var(--ec-surface) 35%, var(--ec-surface-end) 100%);
-            color: #0b2210;
-            border-radius: 0;
-            padding-left: calc(50vw - 600px); /* 🔹 centra el bloque compensando el sidebar */
-            padding-right: calc(50vw - 600px);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+    /* Fondo completo */
+    .surface-wrapper {
+        width: 100vw; /* ocupa todo el ancho del viewport */
+        min-height: 100vh;
+        background: linear-gradient(180deg, var(--ec-surface) 0%, var(--ec-surface) 35%, var(--ec-surface-end) 100%);
+        color: #0b2210;
+        border-radius: 0;
+        padding-left: calc(50vw - 600px); /* 🔹 centra el bloque compensando el sidebar */
+        padding-right: calc(50vw - 600px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 
-        /* Contenedor del texto y botón */
-        .hero-content {
-            max-width: 700px;
-            margin: 0 auto;
-        }
+    /* Contenedor del texto y botón */
+    .hero-content {
+        max-width: 700px;
+        margin: 0 auto;
+    }
 
-        /* Estilos de botones */
-        .btn-outline-dark {
-            border: 2px solid #000;
-            border-radius: 50px;
-            transition: all 0.3s ease-in-out;
-        }
+    /* Estilos de botones */
+    .btn-outline-dark {
+        border: 2px solid #000;
+        border-radius: 50px;
+        transition: all 0.3s ease-in-out;
+    }
 
         .btn-outline-dark:hover {
             background-color: #000;
             color: #fff;
         }
 
-        .btn-dark {
-            background-color: #0b0b0b;
-            color: #fff;
-            border-radius: 50px;
-        }
+    .btn-dark {
+        background-color: #0b0b0b;
+        color: #fff;
+        border-radius: 50px;
+    }
 
         .btn-dark:hover {
             background-color: #222;
         }
 
-      (max-width: 1200px) {
-            .surface-wrapper {
-                padding-left: 2rem;
-                padding-right: 2rem;
-            }
-        }
-    </style>
+    (max-width: 1200px) {
+        .surface-wrapper
+
+    {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+    }
+</style>
 </main>
 
