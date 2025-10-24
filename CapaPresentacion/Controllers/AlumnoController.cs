@@ -97,5 +97,8 @@ namespace CapaPresentacion.Controllers
             Session.Clear();
             return RedirectToAction("IniciarSesion", "Home");
         }
+
+
+       
     }
 }
