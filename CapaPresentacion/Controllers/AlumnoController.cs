@@ -99,6 +99,41 @@ namespace CapaPresentacion.Controllers
         }
 
 
-       
+        public string Motivation(bool ProposeIt)
+        {
+            if (ProposeIt == true)
+            {
+                return "All is possible";
+            }
+            else
+            {
+                return "Keep going, make a stronger effort";
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
