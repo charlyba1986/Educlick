@@ -10,37 +10,35 @@
     ViewData["Title"] = "Mi progreso — Educlick";
 }
 
-<section class="w-100">
+<!--<section class="w-100">
     <div class="surface-wrapper gradient shadow-sm p-4 p-md-5">
 
         <h1 class="h3 fw-bold text-center mb-4">Mi progreso</h1>
-        <hr class="opacity-50 mb-4" />
-
-        <!-- KPIs -->
-        <div class="row g-4 mb-5 text-center">
-            <div class="col-12 col-md-4">
-                <div class="card shadow-sm rounded-4 p-4 h-100">
-                    <h2 class="h6 fw-semibold mb-2">Tiempo dedicado</h2>
-                    <p class="display-6 fw-bold mb-0">29 <small class="fs-5">h</small></p>
-                </div>
-            </div>
-            <div class="col-12 col-md-4">
-                <div class="card shadow-sm rounded-4 p-4 h-100">
-                    <h2 class="h6 fw-semibold mb-2">Planes completados</h2>
-                    <p class="display-6 fw-bold mb-0">5</p>
-                </div>
-            </div>
-            <div class="col-12 col-md-4">
-                <div class="card shadow-sm rounded-4 p-4 h-100 d-flex flex-column align-items-center justify-content-center">
-                    <h2 class="h6 fw-semibold mb-3">Progreso general</h2>
-                    <canvas id="gaugeChart" width="120" height="120" aria-label="Progreso general"></canvas>
-                    <p class="fw-semibold mt-2 mb-0">84% <small class="text-muted">All goals</small></p>
-                </div>
-            </div>
+        <hr class="opacity-50 mb-4" />-->
+<!-- KPIs -->
+<!--<div class="row g-4 mb-5 text-center">
+    <div class="col-12 col-md-4">
+        <div class="card shadow-sm rounded-4 p-4 h-100">
+            <h2 class="h6 fw-semibold mb-2">Tiempo dedicado</h2>
+            <p class="display-6 fw-bold mb-0">29 <small class="fs-5">h</small></p>
         </div>
-
-        <!-- Gráficos de planes -->
-        <div class="row g-4">
+    </div>
+    <div class="col-12 col-md-4">
+        <div class="card shadow-sm rounded-4 p-4 h-100">
+            <h2 class="h6 fw-semibold mb-2">Planes completados</h2>
+            <p class="display-6 fw-bold mb-0">5</p>
+        </div>
+    </div>
+    <div class="col-12 col-md-4">
+        <div class="card shadow-sm rounded-4 p-4 h-100 d-flex flex-column align-items-center justify-content-center">
+            <h2 class="h6 fw-semibold mb-3">Progreso general</h2>
+            <canvas id="gaugeChart" width="120" height="120" aria-label="Progreso general"></canvas>
+            <p class="fw-semibold mt-2 mb-0">84% <small class="text-muted">All goals</small></p>
+        </div>
+    </div>
+</div>-->
+<!-- Gráficos de planes -->
+<!--<div class="row g-4">
             <div class="col-12 col-md-6">
                 <div class="card shadow-sm rounded-4 p-3">
                     <h3 class="h6 fw-semibold">Plan A</h3>
@@ -67,7 +65,67 @@
             </div>
         </div>
     </div>
+</section>-->
+
+@model DashboardAlumnoVM
+
+<section class="w-100">
+    <div class="surface-wrapper gradient shadow-sm p-4 p-md-5">
+        <h1 class="h3 fw-bold text-center mb-4">Mi progreso</h1>
+        <hr class="opacity-50 mb-4" />
+
+        <!-- KPIs -->
+        <div class="row g-4 mb-5 text-center">
+            <div class="col-12 col-md-4">
+                <div class="card shadow-sm rounded-4 p-4 h-100">
+                    <h2 class="h6 fw-semibold mb-2">Tiempo dedicado</h2>
+                    <p class="display-6 fw-bold mb-0">@Model.HorasCompletadas <small class="fs-5">h</small></p>
+                    <small class="text-muted">de @Model.HorasTotales h totales</small>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="card shadow-sm rounded-4 p-4 h-100">
+                    <h2 class="h6 fw-semibold mb-2">Planes activos</h2>
+                    <p class="display-6 fw-bold mb-0">@Model.PlanesActivos</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="card shadow-sm rounded-4 p-4 h-100 d-flex flex-column align-items-center justify-content-center">
+                    <h2 class="h6 fw-semibold mb-3">Progreso general</h2>
+                    <div class="progress w-100" style="height: 18px;">
+                        <div class="progress-bar" role="progressbar" style="width:@Model.ProgresoGeneral%;">@Model.ProgresoGeneral%</div>
+                    </div>
+                    <small class="text-muted mt-2">Ponderado por horas</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjetas de planes (una por cada ruta activa) -->
+        <div class="row g-4">
+            @foreach (var r in Model.Rutas)
+            {
+                <div class="col-12 col-md-6">
+                    <div class="card shadow-sm rounded-4 p-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h3 class="h6 fw-semibold mb-0">@r.NombreRuta</h3>
+                            <span class="badge bg-success">@r.Porcentaje% </span>
+                        </div>
+
+                        <div class="mb-2">
+                            <div class="progress" style="height: 12px;">
+                                <div class="progress-bar" role="progressbar" style="width:@r.Porcentaje%;"></div>
+                            </div>
+                        </div>
+                        <small class="text-muted">
+                            @r.HorasCompletadas h de @r.HorasTotales h
+                        </small>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </section>
+
 
 <style>
     :root {
@@ -117,10 +175,10 @@
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['2016','2017','2018','2019','2020','2021','2022','2023'],
+                labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
                 datasets: [{
                     label: 'Progreso',
-                    data: [10,20,50,30,60,40,70,90],
+                    data: [10, 20, 50, 30, 60, 40, 70, 90],
                     borderColor: '#000',
                     backgroundColor: 'rgba(0,0,0,0.1)',
                     fill: true,

@@ -1,11 +1,12 @@
-﻿using System;
+﻿using CapaDatos;
+using CapaEntidad;
+using CapaNegocio;
+using CapaPresentacion.ViewsModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using CapaEntidad;
-using CapaDatos;
-using CapaNegocio;
 
 namespace CapaPresentacion.Controllers
 {
@@ -28,7 +29,26 @@ namespace CapaPresentacion.Controllers
 
         public ActionResult MiProgreso()
         {
-            return View();
+            int idUsuario = Convert.ToInt32(Session["usuarioID"]);
+            var negocio = new AlumnoNegocio();
+            DashboardAlumnoDto dto = negocio.ObtenerDashboardAlumno(idUsuario);
+
+            var vm = new DashboardAlumnoVM
+            {
+                HorasTotales = dto.HorasTotales,
+                HorasCompletadas = dto.HorasCompletadas,
+                PlanesActivos = dto.PlanesActivos,
+                Rutas = dto.Rutas.Select(r => new RutaProgresoVM
+                {
+                    IdRuta = r.IdRuta,
+                    NombreRuta = r.NombreRuta,
+                    HorasTotales = r.HorasTotales,
+                    HorasCompletadas = r.HorasCompletadas
+                }).ToList()
+            };
+
+            return View(vm);
+            //return View();
         }
 
         public ActionResult MisRutas()
