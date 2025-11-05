@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -65,6 +66,67 @@ namespace CapaDatos
             }
 
             return exito;
+        }
+
+
+       public DashboardAlumnoDto ObtenerDashboardAlumno(int idUsuario)
+        {
+            var dto= new DashboardAlumnoDto();
+            var rutas= new List<RutaProgresoDto>();
+
+            using(var con =new SqlConnection(connectionString))
+            {
+                con.Open();
+
+                using (var cmd = new SqlCommand(@"
+                SELECT r.IdRuta, r.Nombre, ISNULL(SUM(c.Horas),0) AS HorasTotales
+                FROM UsuarioRuta ur
+                JOIN Ruta r ON r.IdRuta = ur.IdRuta AND r.Activo = 1
+                LEFT JOIN CursoRuta cr ON cr.IdRuta = r.IdRuta
+                LEFT JOIN Curso c ON c.IdCurso = cr.IdCurso
+                WHERE ur.IdUsuario = @u
+                GROUP BY r.IdRuta, r.Nombre
+                ORDER BY r.Nombre;", con))
+                {
+                    cmd.Parameters.AddWithValue("@u", idUsuario);
+                    using (SqlDataReader rd = cmd.ExecuteReader())
+                        
+                    {
+                        while (rd.Read())
+                        {     
+                            rutas.Add(new RutaProgresoDto
+                        {
+                            IdRuta = rd.GetInt32(0),
+                            NombreRuta = rd.GetString(1),
+                            HorasTotales = rd.GetInt32(2)
+                        });
+                        }
+                    }
+                }
+                foreach (RutaProgresoDto r in rutas)
+                {
+                    using (SqlCommand cmd2 = new SqlCommand(@"
+                        SELECT ISNULL(SUM(c.Horas * ISNULL(ucp.Porcentaje,0)/100.0),0)
+                        FROM CursoRuta cr
+                        JOIN Curso c ON c.IdCurso = cr.IdCurso
+                        LEFT JOIN UsuarioCursoProgreso ucp
+                               ON ucp.IdUsuario = @u AND ucp.IdCurso = cr.IdCurso
+                        WHERE cr.IdRuta = @r;", con))
+                    {
+                        cmd2.Parameters.AddWithValue("@u", idUsuario);
+                        cmd2.Parameters.AddWithValue("@r", r.IdRuta);
+
+                        object result = cmd2.ExecuteScalar();
+                        double horas = (result == null || result == DBNull.Value) ? 0.0 : Convert.ToDouble(result);
+                        r.HorasCompletadas = (int)Math.Round(horas);
+                    }
+                }
+            }
+            dto.Rutas = rutas;
+            dto.PlanesActivos = rutas.Count;
+            dto.HorasTotales = rutas.Sum(x => x.HorasTotales);
+            dto.HorasCompletadas = rutas.Sum(x => x.HorasCompletadas);
+            return dto;
         }
     }
 }
