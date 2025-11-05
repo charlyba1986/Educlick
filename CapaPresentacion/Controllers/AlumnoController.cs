@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using CapaEntidad;
 using CapaDatos;
+using CapaNegocio;
 
 namespace CapaPresentacion.Controllers
 {
@@ -32,7 +33,24 @@ namespace CapaPresentacion.Controllers
 
         public ActionResult MisRutas()
         {
-            return View();
+            // 1) Obtener el alumno logueado (si no hay sesión, devolvé lista vacía)
+            int idAlumno = 0;
+            if (Session["usuarioID"] != null)
+            {
+                int.TryParse(Session["usuarioID"].ToString(), out idAlumno);
+            }
+
+            var negocio = new RutaNegocio();
+            List<Ruta> rutas = new List<Ruta>();
+
+            if (idAlumno > 0)
+            {
+                rutas = negocio.ListarRutasParaAlumno(idAlumno) ?? new List<Ruta>();
+            }
+
+            // 2) DEVOLVÉ SIEMPRE una lista (no null)
+            return View(rutas);
+            
         }
         public ActionResult Certificados()
         {
@@ -91,6 +109,35 @@ namespace CapaPresentacion.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult IniciarRuta(int idRuta)
+        {
+            try
+            {
+                int idUsuario = Convert.ToInt32(Session["usuarioID"]);
+                var negocio = new CapaNegocio.RutaNegocio();
+                bool exito = negocio.IniciarRuta(idUsuario, idRuta);
+
+                if (exito)
+                {
+                    TempData["MensajeRuta"] = "ok";
+                }
+                else
+                {
+                    TempData["MensajeRuta"] = "error";
+                }
+
+                return RedirectToAction("MisRutas","Alumno"); // vuelve a la vista con las rutas
+            }
+            catch (Exception ex)
+            {
+                TempData["MensajeRuta"] = "error";
+                Console.WriteLine(ex.Message);
+                return RedirectToAction("Rutas");
+            }
+        }
+
+
 
         public ActionResult CerrarSesion()
         {
@@ -99,17 +146,7 @@ namespace CapaPresentacion.Controllers
         }
 
 
-        public string Motivation(bool ProposeIt)
-        {
-            if (ProposeIt == true)
-            {
-                return "All is possible";
-            }
-            else
-            {
-                return "Keep going, make a stronger effort";
-            }
-        }
+     
 
 
 

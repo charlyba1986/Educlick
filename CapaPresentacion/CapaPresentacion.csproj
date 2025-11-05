@@ -278,6 +278,10 @@
       <Project>{e39e3374-283f-4e4f-b65e-d8a393a32e4c}</Project>
       <Name>CapaEntidad</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CapaNegocio\CapaNegocio.csproj">
+      <Project>{914fe016-5d2c-4a16-a6b6-ea0468d35e58}</Project>
+      <Name>CapaNegocio</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
