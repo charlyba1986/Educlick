@@ -45,31 +45,73 @@ namespace CapaDatos
 
             return cursos;
         }
-        public bool InscribirseEnCurso(int idUsuario, int idCurso)
+        //public bool InscribirseEnCurso(int idUsuario, int idCurso)
+        //{
+        //    bool exito = false;            
+
+        //    using (SqlConnection connection = new SqlConnection(connectionString))
+        //    {
+        //        string query = @"
+        //    INSERT INTO UsuarioCurso (IdUsuario, IdCurso, FechaInscripcion, Estado)
+        //    VALUES (@idUsuario, @idCurso, GETDATE(), 'Activo')";
+
+        //        SqlCommand command = new SqlCommand(query, connection);
+        //        command.Parameters.AddWithValue("@idUsuario", idUsuario);
+        //        command.Parameters.AddWithValue("@idCurso", idCurso);
+
+        //        connection.Open();
+        //        int filas = command.ExecuteNonQuery();
+
+        //        exito = filas > 0;
+        //    }
+
+        //    return exito;
+        //}
+
+        public bool InscribirseEnCurso(int idUsuario, int idCurso, out string mensaje)
         {
-            bool exito = false;            
+            mensaje = string.Empty;
+            bool exito = false;
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = @"
+                connection.Open();
+
+                // 1️⃣ Validar si ya está inscripto
+                string checkQuery = "SELECT COUNT(*) FROM UsuarioCurso WHERE IdUsuario = @idUsuario AND IdCurso = @idCurso";
+                using (SqlCommand checkCmd = new SqlCommand(checkQuery, connection))
+                {
+                    checkCmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+                    checkCmd.Parameters.AddWithValue("@idCurso", idCurso);
+
+                    int existe = Convert.ToInt32(checkCmd.ExecuteScalar());
+                    if (existe > 0)
+                    {
+                        mensaje = "Ya estás inscripto para este curso";
+                        return false;
+                    }
+                }
+
+                // 2️⃣ Insertar solo si no existe
+                string insertQuery = @"
             INSERT INTO UsuarioCurso (IdUsuario, IdCurso, FechaInscripcion, Estado)
             VALUES (@idUsuario, @idCurso, GETDATE(), 'Activo')";
+                using (SqlCommand insertCmd = new SqlCommand(insertQuery, connection))
+                {
+                    insertCmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+                    insertCmd.Parameters.AddWithValue("@idCurso", idCurso);
 
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@idUsuario", idUsuario);
-                command.Parameters.AddWithValue("@idCurso", idCurso);
-
-                connection.Open();
-                int filas = command.ExecuteNonQuery();
-
-                exito = filas > 0;
+                    int filas = insertCmd.ExecuteNonQuery();
+                    exito = filas > 0;
+                    mensaje = exito ? "Inscripción realizada con éxito" : "Error al inscribirse";
+                }
             }
 
             return exito;
         }
 
 
-       public DashboardAlumnoDto ObtenerDashboardAlumno(int idUsuario)
+        public DashboardAlumnoDto ObtenerDashboardAlumno(int idUsuario)
         {
             var dto= new DashboardAlumnoDto();
             var rutas= new List<RutaProgresoDto>();

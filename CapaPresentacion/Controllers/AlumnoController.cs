@@ -110,7 +110,8 @@ namespace CapaPresentacion.Controllers
             {
                 int idUsuario = Convert.ToInt32(Session["usuarioID"]);
                 AlumnoData alumno = new AlumnoData();
-                bool exito = alumno.InscribirseEnCurso(idUsuario, idCurso);
+                string mensaje;
+                bool exito = alumno.InscribirseEnCurso(idUsuario, idCurso,out mensaje);
 
                 if(exito)
                 {
