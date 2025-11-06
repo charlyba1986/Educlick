@@ -79,14 +79,15 @@ namespace CapaDatos
                 con.Open();
 
                 using (var cmd = new SqlCommand(@"
-                SELECT r.IdRuta, r.Nombre, ISNULL(SUM(c.Horas),0) AS HorasTotales
-                FROM UsuarioRuta ur
-                JOIN Ruta r ON r.IdRuta = ur.IdRuta AND r.Activo = 1
-                LEFT JOIN CursoRuta cr ON cr.IdRuta = r.IdRuta
-                LEFT JOIN Curso c ON c.IdCurso = cr.IdCurso
-                WHERE ur.IdUsuario = @u
-                GROUP BY r.IdRuta, r.Nombre
-                ORDER BY r.Nombre;", con))
+                  SELECT r.IdRuta, r.Nombre,
+                           ISNULL(SUM(c.DuracionHoras),0) AS HorasTotales
+                    FROM UsuarioRuta ur
+                    JOIN Ruta r ON r.IdRuta = ur.IdRuta AND r.Activo = 1
+                    LEFT JOIN CursoRuta cr ON cr.IdRuta = r.IdRuta
+                    LEFT JOIN Curso c ON c.IdCurso = cr.IdCurso
+                    WHERE ur.IdUsuario = @u
+                    GROUP BY r.IdRuta, r.Nombre
+                    ORDER BY r.Nombre;", con))
                 {
                     cmd.Parameters.AddWithValue("@u", idUsuario);
                     using (SqlDataReader rd = cmd.ExecuteReader())
@@ -106,7 +107,7 @@ namespace CapaDatos
                 foreach (RutaProgresoDto r in rutas)
                 {
                     using (SqlCommand cmd2 = new SqlCommand(@"
-                        SELECT ISNULL(SUM(c.Horas * ISNULL(ucp.Porcentaje,0)/100.0),0)
+                        SELECT ISNULL(SUM(c.DuracionHoras * ISNULL(ucp.Porcentaje,0)/100.0),0)
                         FROM CursoRuta cr
                         JOIN Curso c ON c.IdCurso = cr.IdCurso
                         LEFT JOIN UsuarioCursoProgreso ucp
