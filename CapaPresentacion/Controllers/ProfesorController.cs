@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CapaNegocio;
+using CapaEntidad;
 
 namespace CapaPresentacion.Controllers
 {
@@ -58,9 +60,11 @@ namespace CapaPresentacion.Controllers
             }
         }
 
-        public ActionResult SeguimientoAlumnos ()
+        public ActionResult SeguimientoAlumnos (int ? idRuta)
         {
-            return View();
+            var negocio = new ProfesorNegocio();
+            ProfesorSeguimientoDto dto = negocio.ObtenerSeguimientoPlanes(idRuta);
+            return View(dto);
         }
 
         public ActionResult Alertas()

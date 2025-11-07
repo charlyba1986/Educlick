@@ -11,72 +11,69 @@
     ViewData["Title"] = "Seguimiento de planes — Educlick";
 }
 
-<section class="w-100">
+<!--<section class="w-100">
     <div class="surface-wrapper gradient shadow-sm p-4 p-md-5">
 
-        <h1 class="h4 fw-bold mb-4">Seguimiento de planes</h1>
-
-        <!-- KPIs -->
-        <div class="row g-4 mb-4">
-            <div class="col-12 col-md-4">
-                <div class="card shadow-sm rounded-4 p-3 text-center">
-                    <h6 class="fw-semibold">Promedio general de avance</h6>
-                    <canvas id="avanceChart" height="120"></canvas>
-                    <p class="mt-2">80%</p>
-                    <a href="#" class="small fw-semibold">Reportes →</a>
+        <h1 class="h4 fw-bold mb-4">Seguimiento de planes</h1>-->
+<!-- KPIs -->
+<!--<div class="row g-4 mb-4">
+    <div class="col-12 col-md-4">
+        <div class="card shadow-sm rounded-4 p-3 text-center">
+            <h6 class="fw-semibold">Promedio general de avance</h6>
+            <canvas id="avanceChart" height="120"></canvas>
+            <p class="mt-2">80%</p>
+            <a href="#" class="small fw-semibold">Reportes →</a>
+        </div>
+    </div>
+    <div class="col-12 col-md-4">
+        <div class="card shadow-sm rounded-4 p-3 text-center">
+            <h6 class="fw-semibold">Porcentaje de participación</h6>
+            <canvas id="participacionChart" height="120"></canvas>
+            <p class="mt-2">88%</p>
+            <a href="#" class="small fw-semibold">Reportes →</a>
+        </div>
+    </div>
+    <div class="col-12 col-md-4">
+        <div class="card shadow-sm rounded-4 p-3 text-center">
+            <h6 class="fw-semibold">Porcentaje de abandono</h6>
+            <canvas id="abandonoChart" height="120"></canvas>
+            <p class="mt-2">88%</p>
+            <a href="#" class="small fw-semibold">Reportes →</a>
+        </div>
+    </div>
+</div>-->
+<!-- Métricas rápidas + tabla -->
+<!--<div class="row g-4">
+    <div class="col-12 col-md-6">
+        <div class="row g-3">
+            <div class="col-6">
+                <div class="card shadow-sm rounded-4 p-4 text-center">
+                    <h6 class="fw-semibold">Activos</h6>
+                    <p class="display-6 fw-bold mb-0">18</p>
                 </div>
             </div>
-            <div class="col-12 col-md-4">
-                <div class="card shadow-sm rounded-4 p-3 text-center">
-                    <h6 class="fw-semibold">Porcentaje de participación</h6>
-                    <canvas id="participacionChart" height="120"></canvas>
-                    <p class="mt-2">88%</p>
-                    <a href="#" class="small fw-semibold">Reportes →</a>
+            <div class="col-6">
+                <div class="card shadow-sm rounded-4 p-4 text-center">
+                    <h6 class="fw-semibold">Finalizados</h6>
+                    <p class="display-6 fw-bold mb-0">8</p>
                 </div>
             </div>
-            <div class="col-12 col-md-4">
-                <div class="card shadow-sm rounded-4 p-3 text-center">
-                    <h6 class="fw-semibold">Porcentaje de abandono</h6>
-                    <canvas id="abandonoChart" height="120"></canvas>
-                    <p class="mt-2">88%</p>
-                    <a href="#" class="small fw-semibold">Reportes →</a>
+            <div class="col-6">
+                <div class="card shadow-sm rounded-4 p-4 text-center">
+                    <h6 class="fw-semibold">Sin avances</h6>
+                    <p class="display-6 fw-bold mb-0">5</p>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card shadow-sm rounded-4 p-4 text-center">
+                    <h6 class="fw-semibold">En revisión</h6>
+                    <p class="display-6 fw-bold mb-0">5</p>
                 </div>
             </div>
         </div>
-
-        <!-- Métricas rápidas + tabla -->
-        <div class="row g-4">
-            <div class="col-12 col-md-6">
-                <div class="row g-3">
-                    <div class="col-6">
-                        <div class="card shadow-sm rounded-4 p-4 text-center">
-                            <h6 class="fw-semibold">Activos</h6>
-                            <p class="display-6 fw-bold mb-0">18</p>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="card shadow-sm rounded-4 p-4 text-center">
-                            <h6 class="fw-semibold">Finalizados</h6>
-                            <p class="display-6 fw-bold mb-0">8</p>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="card shadow-sm rounded-4 p-4 text-center">
-                            <h6 class="fw-semibold">Sin avances</h6>
-                            <p class="display-6 fw-bold mb-0">5</p>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="card shadow-sm rounded-4 p-4 text-center">
-                            <h6 class="fw-semibold">En revisión</h6>
-                            <p class="display-6 fw-bold mb-0">5</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tabla de seguimiento individual -->
-            <div class="col-12 col-md-6">
+    </div>-->
+<!-- Tabla de seguimiento individual -->
+<!--<div class="col-12 col-md-6">
                 <div class="card shadow-sm rounded-4 p-4 h-100">
                     <h6 class="fw-semibold mb-3">Seguimiento individual por alumno</h6>
                     <table class="table table-bordered align-middle text-center">
@@ -99,7 +96,139 @@
         </div>
 
     </div>
+</section>-->
+@model CapaEntidad.ProfesorSeguimientoDto
+
+<section class="w-100">
+    <div class="surface-wrapper gradient shadow-sm p-4 p-md-5">
+
+        <h1 class="h4 fw-bold mb-4">Seguimiento de planes</h1>
+
+        <!-- KPIs -->
+        <div class="row g-4 mb-4">
+            <div class="col-12 col-md-4">
+                <div class="card shadow-sm rounded-4 p-3 text-center">
+                    <h6 class="fw-semibold">Promedio general de avance</h6>
+                    <canvas id="avanceChart" height="120" data-value="@Model.PromedioAvance"></canvas>
+                    <p class="mt-2">@Model.PromedioAvance%</p>
+                    <a href="@Url.Action("Reportes","Profesor")" class="small fw-semibold">Reportes →</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="card shadow-sm rounded-4 p-3 text-center">
+                    <h6 class="fw-semibold">Porcentaje de participación</h6>
+                    <canvas id="participacionChart" height="120" data-value="@Model.Participacion"></canvas>
+                    <p class="mt-2">@Model.Participacion%</p>
+                    <a href="@Url.Action("Reportes","Profesor")" class="small fw-semibold">Reportes →</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="card shadow-sm rounded-4 p-3 text-center">
+                    <h6 class="fw-semibold">Porcentaje de abandono</h6>
+                    <canvas id="abandonoChart" height="120" data-value="@Model.Abandono"></canvas>
+                    <p class="mt-2">@Model.Abandono%</p>
+                    <a href="@Url.Action("Reportes","Profesor")" class="small fw-semibold">Reportes →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Métricas rápidas + tabla -->
+        <div class="row g-4">
+            <div class="col-12 col-md-6">
+                <div class="row g-3">
+                    <div class="col-6">
+                        <div class="card shadow-sm rounded-4 p-4 text-center">
+                            <h6 class="fw-semibold">Activos</h6>
+                            <p class="display-6 fw-bold mb-0">@Model.Activos</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card shadow-sm rounded-4 p-4 text-center">
+                            <h6 class="fw-semibold">Finalizados</h6>
+                            <p class="display-6 fw-bold mb-0">@Model.Finalizados</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card shadow-sm rounded-4 p-4 text-center">
+                            <h6 class="fw-semibold">Sin avances</h6>
+                            <p class="display-6 fw-bold mb-0">@Model.SinAvances</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card shadow-sm rounded-4 p-4 text-center">
+                            <h6 class="fw-semibold">En revisión</h6>
+                            <p class="display-6 fw-bold mb-0">@Model.EnRevision</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabla de seguimiento individual -->
+            <div class="col-12 col-md-6">
+                <div class="card shadow-sm rounded-4 p-4 h-100">
+                    <h6 class="fw-semibold mb-3">Seguimiento individual por alumno</h6>
+                    <table class="table table-bordered align-middle text-center">
+                        <thead class="table-light fw-bold">
+                            <tr>
+                                <th>Alumno</th>
+                                <th>Plan</th>
+                                <th>Progreso</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.AlumnoDetalle.Count == 0)
+                            {
+                                <tr><td colspan="3" class="text-muted">Sin datos</td></tr>
+                            }
+                            else
+                            {
+                                foreach (var x in Model.AlumnoDetalle)
+                                {
+                                    <tr>
+                                        <td>@x.Alumno</td>
+                                        <td>@x.NombreRuta</td>
+                                        <td>@x.PorcentajeRuta</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </section>
+
+@section scripts {
+    <!-- Si ya tenés Chart.js incluido global, omití esta línea -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        (function () {
+            function donut(canvasId) {
+                var el = document.getElementById(canvasId);
+                if (!el) return;
+                var val = parseFloat(el.getAttribute('data-value')) || 0;
+                new Chart(el.getContext('2d'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Completado', 'Pendiente'],
+                        datasets: [{
+                            data: [val, Math.max(0, 100 - val)]
+                        }]
+                    },
+                    options: {
+                        cutout: '60%',
+                        plugins: { legend: { display: false } }
+                    }
+                });
+            }
+            donut('avanceChart');
+            donut('participacionChart');
+            donut('abandonoChart');
+        })();
+    </script>
+}
 
 <style>
     :root {

@@ -50,26 +50,26 @@ namespace CapaDatos
                 con.Open();
 
                 string query = @"SELECT
-                                u.IdUsuario,
-                                (u.Nombres + ' ' + u.Apellidos) AS Alumno,
+                                u.Id ,
+                                (u.Nombre + ' ' + u.Apellido) AS Alumno,
                                  r.IdRuta,
                                  r.Nombre AS NombreRuta,
                                   CAST(
-                                  CASE WHEN SUM(ISNULL(c.Horas,0)) = 0 THEN 0
-                                  ELSE (SUM(ISNULL(c.Horas,0) * ISNULL(ucp.Porcentaje,0)) * 1.0) / SUM(ISNULL(c.Horas,0))
+                                  CASE WHEN SUM(ISNULL(c.DuracionHoras,0)) = 0 THEN 0
+                                  ELSE (SUM(ISNULL(c.DuracionHoras,0) * ISNULL(ucp.Porcentaje,0)) * 1.0) / SUM(ISNULL(c.DuracionHoras,0))
                                   END
                                   AS DECIMAL(5,2)
                                   ) AS PorcentajeRuta,
                                     CASE WHEN MAX(CASE WHEN ISNULL(ucp.Estado,0)=2 THEN 1 ELSE 0 END) = 1 THEN 1 ELSE 0 END AS AbandonoFlag
                                 FROM UsuarioRuta ur
-                                JOIN Usuario u      ON u.IdUsuario = ur.IdUsuario
+                                JOIN Usuario u      ON u.Id = ur.IdUsuario
                                 JOIN Ruta r         ON r.IdRuta    = ur.IdRuta
                                 LEFT JOIN CursoRuta cr ON cr.IdRuta = r.IdRuta
                                 LEFT JOIN Curso c      ON c.IdCurso = cr.IdCurso
                                 LEFT JOIN UsuarioCursoProgreso ucp
-                                    ON ucp.IdUsuario = u.IdUsuario AND ucp.IdCurso = cr.IdCurso
+                                    ON ucp.IdUsuario = u.Id AND ucp.IdCurso = cr.IdCurso
                                 WHERE (@IdRuta IS NULL OR r.IdRuta = @IdRuta)
-                                GROUP BY u.IdUsuario, u.Nombres, u.Apellidos, r.IdRuta, r.Nombre
+                                GROUP BY u.Id, u.Nombre, u.Apellido, r.IdRuta, r.Nombre
                                 ORDER BY r.Nombre, Alumno;";
 
                 SqlCommand cmd = new SqlCommand(query, con);
@@ -79,7 +79,7 @@ namespace CapaDatos
                 {
                     detalle.Add(new AlumnoPlanSeguimientoDto
                     {
-                        IdUsuario = Convert.ToInt32(dr["IdUsuario"]),
+                        IdUsuario = Convert.ToInt32(dr["Id"]),
                         Alumno = dr["Alumno"].ToString(),
                         IdRuta = Convert.ToInt32(dr["IdRuta"]),
                         NombreRuta = dr["NombreRuta"].ToString(),
