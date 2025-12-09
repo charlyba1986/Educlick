@@ -46,6 +46,7 @@
     <Compile Include="Curso.cs" />
     <Compile Include="DashboardAlumnoDto.cs" />
     <Compile Include="ProfesorSeguimientoDto.cs" />
+    <Compile Include="ProgresoAlumnoDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ruta.cs" />
     <Compile Include="RutaProgresoDto.cs" />
